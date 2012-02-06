@@ -1,0 +1,32 @@
+[beets]
+directory: /tank-main/music/collection/processed/
+library: /tank-main/music/.beets/musiclibrary.blb
+import_log: /tank-main/music/.beets/import.log
+import_incremental: no
+import_quiet_fallback: asis
+
+import_write: yes
+import_art: yes
+art_filename: albumart
+
+threaded: yes
+color: yes
+
+plugins = embedart chroma scrub inline
+
+[paths]
+default: Artists/$albumartist/$album/$disc_and_track $title
+singleton: Singletons/$artist/$title
+comp: Compilations/$album/$track $title
+albumtype_soundtrack: Soundtracks/$album/$track $title
+
+[pathfields]
+disc_and_track: u'%02i %02i' % (disc, track) if disctotal > 1
+                else u'%02i' % (track)
+
+[embedart]
+autoembed: yes
+autoscrub: yes
+
+[scrub]
+autoscrub: yes
